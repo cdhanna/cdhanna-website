@@ -1,0 +1,122 @@
+<head>
+	<!-- css imports -->
+	<link rel="stylesheet" type="text/css" href="style.css">
+
+	<link href="https://fonts.googleapis.com/css?family=Changa+One|Luckiest+Guy" rel="stylesheet">
+
+</head>
+<body>
+
+	<!-- Content -->
+	<div id="planet">
+		<!-- D3 goes here -->
+
+<!-- 		<div class="content-wrapper" angle="30">
+			<div class="content">
+				Hello world 
+			</div>
+		</div>
+		<div class="content-wrapper" angle="-30">
+			<div class="content">
+				Hello world 
+			</div>
+		</div>
+		<div class="content-wrapper" angle="80">
+			<div class="content">
+				Hello world 
+			</div>
+		</div> -->
+
+		<!-- planet is here -->
+
+	</div>
+
+	<!-- Deps -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.1/d3.min.js"></script>
+
+	<!-- Scripts -->
+	<script src="modules/util.js"></script>
+	<script src="modules/keys.js"></script>
+	<script src="test.js"></script>
+	
+	<script src="modules/dom.js"></script>
+	<script src="modules/content.js"></script>
+	<script src="modules/space.js"></script>
+	<script src="modules/ground.js"></script>
+	
+
+	<script>
+
+		world.omega = .1;
+
+		var groundObjects = [];
+		var trees = util.range(100, function(index){
+			var tree = ground.make(0, -10, 100, 100);
+			tree.asImage('http://images.iimg.in/c/57078638c45d32c0a38b4608-4-501-0-1460110906/google/tree-png-transparent-images-png-all.img?crop=1')
+			tree.angle = 360 * Math.random();
+			tree.radius += Math.random() * 9;
+			
+			return tree;
+		})
+		trees.map(function(tree){
+			groundObjects.push(tree);
+		})
+
+		var clouds = util.range(20, function(index){
+
+			var cloud = space.make(0, 200, 150, 100)
+			cloud.asImage('http://cliparting.com/wp-content/uploads/2016/06/Clip-art-cloud-clipart-clipartcow.png')
+
+			var alphaSign = Math.sign(Math.random() - .5);
+			cloud.alpha = alphaSign * (.1 + Math.random()*.2);
+			// console.log(alphaSign, cloud.alpha)
+			cloud.angle = 360 * Math.random();
+			cloud.radius += Math.random() * 100;
+			return cloud;
+		})
+
+		var mtn = ground.make(-10, -40, 200, 200)
+		mtn.asImage('http://images.clipartpanda.com/mountain-clipart-Hidef-mountain-clip-art-at-vector-clip-art-2.png')
+		mtn.innerDiv.style('z-index', '-10')
+
+		groundObjects.push(mtn)
+
+
+		keys.on('right', function(e){
+			
+			view.angle -= 1
+			// refreshWorld();
+
+		})
+		keys.on('left', function(e){
+			
+			view.angle += 1
+			// refreshWorld();
+
+		})
+
+
+		var delay = 200;
+		var delay2 = delay*2;
+		setInterval(function(){
+
+			world.update();
+			// mtn.draw(400)
+
+			groundObjects.forEach(function(obj){
+				obj.draw(delay2)
+			})
+
+			clouds.forEach(function(cloud){
+				// console.log('asdf')
+				cloud.update()
+				cloud.draw(delay2)
+			});
+
+
+			refreshView(delay2);
+		}, delay)
+
+	</script>
+
+</body>

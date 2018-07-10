@@ -1,0 +1,55 @@
+body {
+	perspective: 500px;
+}
+
+.panel {
+	background-color: #424242;
+	margin-left: 10%;
+	border: solid 1px black;
+	width: 80%;
+    transform-origin: 50% 50%;
+	border-left: solid 5px black;
+	border-right: solid 5px black;
+}
+
+#top {
+	height: 20px;
+	width: 81%;
+	margin-left: 9.5%;
+	background-color: #323232;
+	transform: rotateX(10deg);
+}
+#mid {
+	height: 20px;
+	width: 79%;
+	margin-left: 10.5%;
+	background-color: #323232;
+	transform: rotateX(-2deg);
+}
+
+#name {
+	color: #02FF6D;
+	text-border: solid 1px white;
+
+	line-height: 128px;
+	font-family: 'Sigmar One', cursive;
+	font-size: 128px;
+	text-align: center;
+
+	height: 150px;
+	transform: rotateX(-5deg);
+}
+
+#main {
+	height: 400px;
+	background-color: #D3D3D3;
+	width: 82%;
+	position: relative;
+	top: -1%;
+	left: -1%;
+	transform: rotateX(5deg);
+}
+
+#main #content {
+	margin: 5px 20px;
+}

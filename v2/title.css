@@ -1,0 +1,26 @@
+.title {
+	text-transform: uppercase;
+	font-family: titleFont;
+
+	width: 50%;
+	margin: auto;
+	text-align: center;
+
+	margin-top: 10%;
+	transform: rotate(1deg);
+}
+
+.title .box {
+	font-size: 64px;
+}
+
+.title #text {
+	transform: rotate(0deg);
+	cursor: pointer;
+}
+
+.title #text:hover {
+	transition: all .1s ease-out;
+	transform: scale(1.02) rotate(-2deg);
+}
+

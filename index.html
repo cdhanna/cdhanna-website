@@ -1,0 +1,158 @@
+<head>
+<link href='https://fonts.googleapis.com/css?family=Sigmar+One|Shadows+Into+Light' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="style.css">
+
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+
+	<div id="titles">
+
+		<div id="name" >
+			<h1 class="border active " route="home"> 
+				Chris Hanna 
+			</h1>
+			<!-- <div class="box-wrapper" id="name-box-wrapper"><div class="box" id="name-box"></div></div> -->
+<!-- 			<box id="name-box"  x="20"> Test Box </box>
+			<box id="name-box" x="60"> Test Box </box> -->
+		</div>
+
+		<div id="titleNavs">
+			<div class="line" id="jobLine">  </div>
+			<div class="line" id="projLine">  </div>
+			<div class="line" id="servLine">  </div>
+		</div>
+
+		<div id="subTitles">
+			<div class="title" id="jobTitle"> <h2 class="border b-tight" route="jobs"> Jobs </h2> </div>
+			<div class="title" id="projTitle"> <h2 class="border b-tight" route="projects"> Projects </h2> </div>
+			<div class="title" id="servTitle"> <h2 class="border b-tight" route="service"> Service </h2> </div>
+		</div>
+
+	</div>
+
+	<div id="content" class="d3">
+		
+		<panel id="test2" angle="1" width="300" height="225" > 
+			<div class="panel-title">
+				<span> Physics! </span>
+			</div>
+			<iframe width="250" height="155" src="https://www.youtube.com/embed/WhtAmToDuto" frameborder="0" allowfullscreen></iframe>
+		</panel>
+
+
+		<panel id="test" angle="-6" width="300" height="220" > 
+			<div class="panel-title">
+				Track!
+			</div>
+			<iframe width="250" height="150" src="https://www.youtube.com/embed/PczeW6YC7EY" frameborder="0" allowfullscreen></iframe>
+		</panel>
+
+
+	</div>
+
+	<div class="hopper">
+	</div>
+
+	<div id="scroller">
+		<div id="line"> 
+			<div id="ball">
+			</div>
+		</div>
+	</div>
+
+	<div style="position: fixed; bottom: 2px; margin-left: 50%; font-size: 10px; color: gray;">
+		<div style="position: relative; left: -50%; cursor: default">
+			<panel angle="2" class="tight">
+				Made from scratch with some &hearts;, by me
+			</panel>
+		</div>
+	</div>
+
+
+	<script src="./comp/dom-util.js"> </script>
+	<script src="./comp/panels.js"> </script>
+	<script src="./comp/popups.js"> </script>
+	<script src="./comp/scroller.js"> </script>
+	<script>
+
+
+
+		var homeBtn = domUtil.select('h1');
+		var titleBtns = domUtil.select('#subTitles h2');
+
+		var navBtns = homeBtn.concat(titleBtns);
+
+		navBtns.forEach(function(btn) {
+			btn.addEventListener('click', function(evt){
+				navBtns.forEach(function(btn){
+					domUtil.removeClass(btn, 'active');
+				});
+				domUtil.addClass(btn, 'active');
+
+				var route = btn.getAttribute('route') || 'home';
+				console.log('going to ', route);
+
+			});
+		});
+
+		panelHelper.doAll();
+		popupHelper.doAll();
+		scrollHelper.init();
+
+
+		var hopper = document.querySelector('.hopper');
+		console.log(hopper);
+
+		var lastPosition = 0;
+
+		// scrollHelper.addOnScroll(function(args){
+		// 	// hopper.style['top'] = -20;
+
+		// 	var nextPosition = args.position;
+		// 	var delta = nextPosition - lastPosition;
+		// 	hopper.style['left'] = 1;
+		// 	var left = hopper.style['left'];
+		// 	left = Number(left.replace('px', ''));
+		// 	left += delta/2;
+		// 	hopper.style['left'] = left;
+
+
+		// });
+
+		// panelHelper.doPanelById('test2')
+		// panelHelper.doPanelById('test3')
+		// var panel = document.querySelector('panel');
+		// panel.innerHTML = '<div class="content"> </div> ';
+		// setTimeout(function(){
+		// 	var panelContent = document.querySelector('panel .content');
+		// 	var youtube = '<iframe width="300" height="200" src="https://www.youtube.com/embed/PczeW6YC7EY" frameborder="0" allowfullscreen></iframe>';
+		// 	panelContent.innerHTML = youtube;
+		// }, 0)
+
+	</script>
+
+</body>
+
+
+
+
+<!-- 
+
+
+				<popup id="physDesc" trigger=".physDescTrigger" width="200" left="40" top="35">
+					<panel id="test3" priority="2">
+						My love for math and science came from trying to model physics in my game worlds. I spent a long time trying to build a physics "engine" from scratch. This video shows some collision response stuff I built. 
+					</panel>
+				</popup>
+
+
+				<popup id="trackDesc" trigger="#trackDescTrigger" width="300" left="0" top="35">
+					<panel priority="2">
+						A couple of years ago, I created a game called Track. I brought Track to the first Boston Festival of Indie Games in 2012, and won an award of 'Most Indie Game'! I loved showcasing Track for the hundreds of people who came to the Festival. Track is a local multiplayer game full of fun physics madness. I wrote it in C# and XNA before XNA was retired by Microsoft. I'm hoping to continue working on Track when Microsoft makes their Xbox ONE dev kits available.
+					</panel>
+				</popup>
+
+
+ -->
